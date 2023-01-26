@@ -1,0 +1,9 @@
+<mat-card (click)="goToAccount()" routerLink="/client/accounts/viewAccount">
+  <mat-card-title>Account number : {{ account.accountNumber }}</mat-card-title>
+  <mat-card-subtitle>{{
+    account.accountType.charAt(0).toUpperCase() + account.accountType.slice(1)
+  }}</mat-card-subtitle>
+  <mat-card-content align="end">
+    <p>Balance : {{ account.balance | currency: "CAD":true:"1.2-2" }}</p>
+  </mat-card-content>
+</mat-card>

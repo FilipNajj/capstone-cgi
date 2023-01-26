@@ -1,0 +1,18 @@
+-Event Storming for capstone
+micro services architecture 
+SPA
+OEM libraries
+
+research:
+-app architecture (Uber)
+-development process of an app: how to develop an app, from backend to front end, etc.
+
+Agile: each of us will choose what to do each day, we say what we did, where we are at,
+problems we face, etc.
+
+
+Explore the domain:
+-identify microservices
+-apis
+-data modeliing (domain objects)
+-wireframes

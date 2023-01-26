@@ -1,0 +1,37 @@
+<mat-accordion class="headers-align" multi>
+  <mat-expansion-panel [expanded]="institutionService.openPanel">
+    <mat-expansion-panel-header>
+      <mat-panel-title> New institution</mat-panel-title>
+      <mat-panel-description>
+        Type the name and the phone number
+        <mat-icon>add</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form [formGroup]="institutionForm">
+      <mat-form-field class="formField" appearance="outline">
+        <mat-label> Name </mat-label>
+        <input matInput formControlName="institutionName" />
+        <mat-error
+          *ngIf="institutionForm.get('institutionName')?.hasError('required')"
+          >This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="formField" appearance="outline">
+        <mat-label> Phone number </mat-label>
+        <input matInput type="number" formControlName="phoneNumber" />
+        <mat-error
+          *ngIf="institutionForm.get('phoneNumber')?.hasError('required')"
+          >This field is required
+        </mat-error>
+      </mat-form-field>
+      <button
+        color="primary"
+        mat-raised-button
+        (click)="submit()"
+        [disabled]="this.institutionForm.invalid"
+      >
+        Submit
+      </button>
+    </form>
+  </mat-expansion-panel>
+</mat-accordion>

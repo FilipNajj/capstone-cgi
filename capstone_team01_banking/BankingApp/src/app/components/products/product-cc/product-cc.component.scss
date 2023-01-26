@@ -1,0 +1,27 @@
+mat-card {
+    background-color: var(--color-card);
+    padding-right: 20px;
+}
+
+p {
+    font-size: medium;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.example-card {
+    max-width: 400px;
+}
+
+.example-header-image {
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 300px;
+}

@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <div routerLink="/home">
+    <img src="/assets/logo.png" alt="image" width="64px" />
+    Axle Bank
+  </div>
+  <span class="spacer"></span>
+
+  <button mat-button routerLink="/products/axle">Products</button>
+  <button mat-button class="example-icon" routerLink="/products/credit-cards">
+    Credit Cards
+  </button>
+
+  <button mat-button *ngIf="!this.isAuthenticated" routerLink="/register">
+    Register
+  </button>
+
+  <button *ngIf="!this.isAuthenticated" mat-icon-button (click)="login()">
+    <mat-icon>login</mat-icon>
+  </button>
+
+  <button mat-flat-button color="primary" (click)="goToDashboard()" *ngIf="this.isAuthenticated">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+  <form ngNoForm action="/logout" method="post" *ngIf="this.isAuthenticated">
+    <button mat-flat-button color="primary">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </form>
+</mat-toolbar>

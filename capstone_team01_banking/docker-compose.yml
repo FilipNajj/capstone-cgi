@@ -1,0 +1,111 @@
+version: '3'
+services:
+  mysql-standalone:
+    container_name: mysql-db
+    image: 'mysql:5.7'
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - "3307:3306"
+  mongodb:
+    image: mongo:5.0
+    container_name: mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - ~/apps/mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+
+  creditCardCompanyService:
+    image: credit-card-company
+    build: ./creditCardCompanyService
+    restart: always
+    ports:
+      - "9003:9003"
+    depends_on:
+      - mysql-standalone
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/creditcarddb?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+
+  # budgeting-microservice:
+  #   image: budgeting-app
+  #   restart: always
+  #   build: ./budgetting-microservice
+  #   ports:
+  #     - "9007:9007"
+  #   depends_on:
+  #     - mysql-standalone
+  #   environment:
+  #     SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/budget_plan?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
+  #     SPRING_DATASOURCE_USERNAME: "root"
+  #     SPRING_DATASOURCE_PASSWORD: "root"
+
+  client_service:
+    image: client_service_image
+    restart: always
+    build: ./ClientService
+    ports:
+      - "9001:9001"
+    depends_on:
+      - mongodb
+
+#  email_service:
+#    image: email_service_image
+#    restart: unless-stopped
+#    build: ./EmailService
+#    ports:
+#      - "9006:9006"
+#    depends_on:
+#      - mongodb
+  transaction_service:
+    image: transaction_service_image
+    container_name: transaction_service_container
+    restart: unless-stopped
+    build: ./TransactionService
+    ports:
+      - "9008:9008"
+    depends_on:
+      - mongodb
+
+#  admin_service:
+#    image: admin_service_image
+#    restart: unless-stopped
+#    build: ./admin-service
+#    ports:
+#      - "9002:9002"
+#    depends_on:
+#      - mysql-standalone
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/adminDB?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
+#      SPRING_DATASOURCE_USERNAME: "root"
+#      SPRING_DATASOURCE_PASSWORD: "root"
+  institution_service:
+    image: institution_service_image
+    restart: unless-stopped
+    build: ./institution-service
+    ports:
+      - "9500:9500"
+    depends_on:
+      - mysql-standalone
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/springbootdatabase?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+  account_manager_service:
+    image: account_manager_image
+    restart: unless-stopped
+    build: ./AccountManagementService
+    ports:
+      - "9009:9009"
+    depends_on:
+      - mysql-standalone
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/axlebank?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"

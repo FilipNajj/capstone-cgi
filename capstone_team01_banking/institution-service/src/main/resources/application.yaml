@@ -1,0 +1,14 @@
+server:
+    port: 9009
+spring:
+    application:
+         name: institutionService
+    datasource:
+        url: jdbc:mysql://localhost:3306/axlebank?createDatabaseIfNotExist=true
+        username: root
+        password: pass
+    jpa:
+      show-sql: true
+      hibernate:
+       ddl-auto: update
+

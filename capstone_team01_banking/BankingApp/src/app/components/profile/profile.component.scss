@@ -1,0 +1,53 @@
+h1{
+    font-weight: 700;
+}
+
+.information-page{
+    border-radius: 3px;
+    padding: 10px;
+    margin-left: 25%;
+    width: 700px;
+}
+
+.profile-container{
+    background: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px rgb(175, 175, 175);
+    padding: 20px;
+}
+
+.profile-container p{
+    margin-bottom: 0;
+}
+
+.profile-container div{
+    display: flex;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    padding: 20px;
+    border: 1px solid rgba(142, 142, 142, 0.39);
+}
+
+.title{
+    font-weight: 500;
+    width: 170px;
+}
+
+.field-cotainer{
+    width: 200px;
+    margin-right: 200px;
+    color: #0000008e;
+}
+
+.change-btn{
+    color: #98ca82;
+    font-weight: 440;
+}
+
+.material-symbols-outlined{
+    color: green;
+}
+
+.white-space{
+    margin-right: 80px;
+}

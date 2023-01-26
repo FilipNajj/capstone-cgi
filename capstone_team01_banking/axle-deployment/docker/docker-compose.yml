@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  axle-ui: #using a prototype for the moment
+    image: "kelamrani/axle-ui:3.2"
+    container_name: "axle-ui"
+    ports:
+      - 9011:9011
+    environment:
+      - PORT=9011
+  # Applications
+
+
+
+  # Backing Services
+
+  axle-keycloak:
+    image: quay.io/keycloak/keycloak:18.0
+    container_name: "axle-keycloak"
+    command: start-dev --import-realm
+    volumes:
+      - ./keycloak:/opt/keycloak/data/import
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    ports:
+      - 8080:8080

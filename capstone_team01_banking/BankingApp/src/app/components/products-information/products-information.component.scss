@@ -1,0 +1,35 @@
+.title {
+    background-color: var(--color-accent-light);
+    padding: 3%;
+}
+
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    justify-content: center;
+    display: flex;
+    font-size: 40px;
+    color: var(--color-primary);
+}
+
+mat-card {
+    background-color: var(--color-card);
+    height: fit-content;
+    width: fit-content;
+}
+
+.productList {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 5%;
+}
+
+button {
+    border: solid
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

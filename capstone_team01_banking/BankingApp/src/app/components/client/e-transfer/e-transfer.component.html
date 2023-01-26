@@ -1,0 +1,45 @@
+<form [formGroup]="eTransferForm">
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>From account : </mat-label>
+      <mat-select formControlName="fromAccountNumber">
+        <mat-option
+          *ngFor="let option of accounts"
+          value="{{ option.value }}"
+          >{{ option.label }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>To contact : </mat-label>
+      <mat-select formControlName="emailRecipient">
+        <mat-option
+          *ngFor="let option of contacts"
+          value="{{ option.value }}"
+          >{{ option.label }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="formField" appearance="outline">
+      <mat-label> Amount </mat-label>
+      <input matInput type="number" formControlName="amount" />
+      <span matPrefix>$&nbsp;</span>
+      <span matSuffix>.00</span>
+      <mat-error *ngIf="eTransferForm.get('amount')?.hasError('required')"
+        >This field is required
+      </mat-error>
+    </mat-form-field>
+  </p>
+</form>
+<button
+  color="primary"
+  mat-raised-button
+  (click)="submit()"
+  [disabled]="this.eTransferForm.invalid"
+>
+  E-transfer money
+</button>

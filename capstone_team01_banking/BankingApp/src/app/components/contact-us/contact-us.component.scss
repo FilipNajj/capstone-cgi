@@ -1,0 +1,19 @@
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-primary);
+    font-size: 60px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 100%;
+    height: 40%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://media.istockphoto.com/photos/contact-us-email-phone-message-contact-communication-web-landing-page-picture-id884374384?k=6&m=884374384&s=170667a&w=0&h=K9FVxAdIzdO2vxexan_Mmu5Tcz_5k-dRmvhRsPiCwBQ=);
+    background-size: cover;
+}
+
+.message {
+    margin: 2%;
+    width: 98%;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,215 @@
+<div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Registration as a new credit card company</mat-card-title>
+      <mat-card-subtitle>Please fill out the form</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="registrationForm">
+        <mat-grid-list cols="2" rowHeight="90px">
+          <mat-grid-tile [colspan]="2">
+            <h3>General Information</h3>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2">
+            <p>
+              <mat-form-field class="formField" appearance="outline">
+                <mat-label> Company Name </mat-label>
+                <input matInput formControlName="companyName" />
+                <mat-error
+                  *ngIf="
+                    registrationForm.get('companyName')?.hasError('required')
+                  "
+                  >This field is required
+                </mat-error>
+              </mat-form-field>
+            </p>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <p>
+              <mat-form-field class="formField" appearance="outline">
+                <mat-label> Email </mat-label>
+                <input matInput formControlName="email" />
+                <mat-error
+                  *ngIf="registrationForm.get('email')?.hasError('required')"
+                  >This field is required
+                </mat-error>
+                <mat-error
+                  *ngIf="registrationForm.get('email')?.hasError('email')"
+                  >Please enter a valid email
+                </mat-error>
+              </mat-form-field>
+            </p>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <p>
+              <mat-form-field class="formField" appearance="outline">
+                <mat-label> Phone number </mat-label>
+                <input matInput type="number" formControlName="phoneNumber" />
+                <mat-error
+                  *ngIf="
+                    registrationForm.get('phoneNumber')?.hasError('required')
+                  "
+                  >This field is required
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    registrationForm.get('phoneNumber')?.hasError('pattern')
+                  "
+                  >Only numbers are acceped
+                </mat-error>
+              </mat-form-field>
+            </p>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <p>
+              <mat-form-field class="formField" appearance="outline">
+                <mat-label> Password </mat-label>
+                <input
+                  matInput
+                  class="info"
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="password"
+                />
+                <button
+                  mat-flat-button
+                  id="hideButton"
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide"
+                  type="button"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+                <mat-error
+                  *ngIf="registrationForm.get('password')?.hasError('required')"
+                  >This field is required
+                </mat-error>
+              </mat-form-field>
+            </p>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <p>
+              <mat-form-field class="formField" appearance="outline">
+                <mat-label> Confirm password </mat-label>
+                <input
+                  matInput
+                  class="info"
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="confirmPassword"
+                  [errorStateMatcher]="matcher"
+                />
+                <button
+                  mat-flat-button
+                  id="hideButton"
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide"
+                  type="button"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+                <mat-error
+                  *ngIf="
+                    registrationForm
+                      .get('confirmPassword')
+                      ?.hasError('required')
+                  "
+                  >This field is required
+                </mat-error>
+                <mat-error *ngIf="registrationForm.hasError('notSame')">
+                  Passwords do not match
+                </mat-error>
+              </mat-form-field>
+            </p>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2">
+            <h3>Address</h3>
+          </mat-grid-tile>
+          <div formGroupName="address">
+            <mat-grid-tile>
+              <p>
+                <mat-form-field class="formField" appearance="outline">
+                  <mat-label> Number </mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    formControlName="streetNumber"
+                  />
+                  <mat-error
+                    *ngIf="
+                      registrationForm.get('streetNumber')?.hasError('required')
+                    "
+                    >This field is required
+                  </mat-error>
+                </mat-form-field>
+              </p>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <p>
+                <mat-form-field class="formField" appearance="outline">
+                  <mat-label> Street Name </mat-label>
+                  <input matInput formControlName="streetName" />
+                  <mat-error
+                    *ngIf="
+                      registrationForm.get('streetName')?.hasError('required')
+                    "
+                    >This field is required
+                  </mat-error>
+                </mat-form-field>
+              </p>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <p>
+                <mat-form-field class="formField" appearance="outline">
+                  <mat-label> City </mat-label>
+                  <input matInput formControlName="city" />
+                  <mat-error
+                    *ngIf="registrationForm.get('city')?.hasError('required')"
+                    >This field is required
+                  </mat-error>
+                </mat-form-field>
+              </p>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <p>
+                <mat-form-field class="formField" appearance="outline">
+                  <mat-label> Postal Code </mat-label>
+                  <input
+                    matInput
+                    #postalCode
+                    maxlength="6"
+                    formControlName="postalCode"
+                  />
+                  <mat-error
+                    *ngIf="
+                      registrationForm.get('postalCode')?.hasError('required')
+                    "
+                    >This field is required
+                  </mat-error>
+                  <mat-hint align="end"
+                    >{{ postalCode.value.length }} / 6</mat-hint
+                  >
+                </mat-form-field>
+              </p>
+            </mat-grid-tile>
+          </div>
+        </mat-grid-list>
+      </form>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button
+        mat-raised-button
+        [disabled]="this.registrationForm.invalid"
+        (click)="register()"
+      >
+        Register
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,21 @@
+<mat-card (click)="goToAccount()" routerLink="/client/accounts/viewAccount">
+  <mat-card-title>
+    Account number : {{ this.creditCard.creditAccountNumber }}
+  </mat-card-title>
+  <mat-card-subtitle>{{
+    this.creditCard.accountType.charAt(0).toUpperCase() +
+      this.creditCard.accountType.slice(1)
+  }}</mat-card-subtitle>
+  <mat-card-content align="end">
+    <p>
+      Balance : {{ this.creditCard.balance | currency: "CAD":true:"1.2-2" }}
+    </p>
+    <p class="creditLeft" align="start">
+      Available credit :
+      {{
+        this.creditCard.creditLimit - this.creditCard.balance
+          | currency: "CAD":true:"1.2-2"
+      }}
+    </p>
+  </mat-card-content>
+</mat-card>

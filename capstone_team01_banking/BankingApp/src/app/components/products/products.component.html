@@ -1,0 +1,11 @@
+<div class="title">
+  <h1>Credit cards</h1>
+</div>
+
+<mat-grid-list cols="3" rowHeight="400px">
+  <mat-grid-tile
+    *ngFor="let creditCardProduct of this.productCCService.creditCardProducts"
+  >
+    <app-product-cc [creditCardProduct]="creditCardProduct"></app-product-cc>
+  </mat-grid-tile>
+</mat-grid-list>

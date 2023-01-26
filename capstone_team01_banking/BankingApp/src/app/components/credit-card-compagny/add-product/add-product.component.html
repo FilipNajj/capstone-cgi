@@ -1,0 +1,64 @@
+<div class="container">
+  <h2 class="title">{{ isUpdating ? "Edit product" : "Add product" }}</h2>
+  <br />
+  <form [formGroup]="addProductForm">
+    <div>
+      <p>
+        <mat-form-field class="formField" appearance="outline">
+          <mat-label> Name </mat-label>
+          <input matInput type="text" formControlName="name" />
+          <mat-error *ngIf="addProductForm.get('name')?.hasError('required')"
+            >This field is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label> Type </mat-label>
+          <mat-select formControlName="type">
+            <mat-option
+              *ngFor="let option of listProduct"
+              value="{{ option.value }}"
+              >{{ option.label }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        </p>
+      <p>
+      </p>
+      <p>
+        <mat-form-field class="formField" appearance="outline">
+          <mat-label> Description </mat-label>
+          <input matInput type="text" formControlName="description" />
+          <mat-error *ngIf="addProductForm.get('description')?.hasError('required')"
+            >This field is required
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="formField" appearance="outline">
+          <mat-label> Cash Advance Interest Rate </mat-label>
+          <input matInput type="number" formControlName="cashAdvanceInterestRate" />
+          <mat-error *ngIf="addProductForm.get('cashAdvanceInterestRate')?.hasError('required')"
+            >This field is required
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="formField" appearance="outline">
+          <mat-label> Purchase Interest Rate </mat-label>
+          <input matInput type="number" formControlName="purchaseInterestRate" />
+          <mat-error *ngIf="addProductForm.get('purchaseInterestRate')?.hasError('required')"
+            >This field is required
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <button
+        [disabled]="!addProductForm.valid"
+        mat-raised-button
+        color="primary"
+        (click)="addNewProduct()"
+      >
+        {{ isUpdating ? "Save product" : "Add product" }}
+      </button>
+    </div>
+  </form>
+</div>

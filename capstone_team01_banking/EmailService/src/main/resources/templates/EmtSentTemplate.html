@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:remove="all">Template for HTML email</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<header>
+    <img src="https://i.imgur.com/HYTiyPa.jpeg" border="0" width="100%">
+</header>
+<br/>
+<p>&nbsp;&nbsp;&nbsp;<h2>Greetings <span th:text="${fromName}">User</span>,</h2>
+</p>
+<h3>
+    &nbsp;&nbsp;&nbsp;&nbsp;This e-mail is to confirm you have successfully sent an Interac E-Transfer.<br/><br/><br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recipient: <span th:text="${toName}"></span>(<span th:text="${toEmail}"></span>)<br/><br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount: <span th:text="${amount}">0.00</span> $ (CAD) <br/>
+</h3>
+<br/><br/>
+<center>
+    <img src="https://i.imgur.com/tTOzkQ8.jpeg"><br/>
+<h4>&nbsp;&nbsp;&nbsp;Thank you for choosing our service!</h4>
+</center>
+<br/>
+<footer>
+    <center>
+        <hr width="95%" color="grey"><br/>
+        This Transaction is secured. <br/><img src="https://i.imgur.com/jSU4kiE.png">
+        <hr width="95%" color="grey">
+        <font size="2">&copy;2000-2022 Interac Corp. All rights reserved.</font>
+    </center>
+</footer>
+</body>
+</html>

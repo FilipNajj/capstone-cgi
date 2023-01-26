@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:remove="all">Template for HTML email</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<header>
+    <img src="https://i.imgur.com/fnUxYrf.jpeg" border="0" width="100%">
+</header>
+<br/>
+<h2>
+<p>&nbsp;Greetings <span th:text="${name}">User</span>!
+</p><br/>
+</h2>
+<h3>
+<p width="80%">
+    <span th:text="${content}">
+    &nbsp;&nbsp;You have successfully registered to the <b>AxleBank</b>.<br/>
+    &nbsp;&nbsp;Your registration has been approved and you can now login.
+    </span>
+</p>
+
+<p></p>
+<p><br/>
+    &nbsp;Regards, <br/>
+    &nbsp;<em>AxleBank</em>
+</p><br/>
+</h3>
+<footer>
+    <img src="https://i.imgur.com/J9LsTqR.jpeg" width="100%" height="45px">
+</footer>
+</body>
+</html>

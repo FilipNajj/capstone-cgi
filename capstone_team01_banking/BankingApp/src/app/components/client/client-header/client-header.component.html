@@ -1,0 +1,18 @@
+<mat-toolbar color="accent">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="clientComponent.toggle()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button
+    mat-button
+    *ngFor="let menuItem of navMenu"
+    [routerLink]="menuItem.link"
+    [disabled]="menuItem.isDisabled"
+  >
+    {{ menuItem.label }}
+  </button>
+</mat-toolbar>

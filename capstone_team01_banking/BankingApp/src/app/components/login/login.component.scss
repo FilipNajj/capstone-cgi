@@ -1,0 +1,23 @@
+mat-card {
+    min-width: 40vw;
+    max-width: 90vw;
+    background-color: var(--color-card);
+    border-radius: 2px;
+}
+
+::ng-deep .mat-card {
+    border-radius: 30px !important;
+}
+
+div {
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,22 @@
+<div class="welcome-div">
+  <h1>Welcome to Axle Bank</h1>
+</div>
+<div class="message">
+  <h2>
+    Axle Bank is a leading Canadian financial services provider. We offer our
+    clients a secure and friendly online banking experience and wide array of
+    products.
+  </h2>
+</div>
+<div class="menu">
+  <mat-card *ngFor="let item of menu" [routerLink]="item.link">
+    <mat-card-content>
+      <mat-icon>{{ item.picture }}</mat-icon>
+    </mat-card-content>
+    <mat-card-footer>
+      <h3>
+        {{ item.label }}
+      </h3>
+    </mat-card-footer>
+  </mat-card>
+</div>

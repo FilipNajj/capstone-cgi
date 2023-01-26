@@ -1,0 +1,60 @@
+<section class="information-page">
+  <h1>Your information</h1>
+
+  <div class="profile-container">
+    <h4>
+      <div>
+        <span class="material-symbols-outlined"> person </span>
+        <p class="title">Name</p>
+
+        <p id="name" class="field-cotainer" style="text-transform: uppercase">
+          {{ client.firstName }} {{ client.lastName }}
+        </p>
+
+        <p class="white-space"></p>
+      </div>
+
+      <div>
+        <span class="material-symbols-outlined"> mail </span>
+        <p class="title">Email</p>
+
+        <p class="field-cotainer">
+          {{ client.email }}
+        </p>
+
+        <a class="change-btn" href>Change</a>
+        <span class="material-symbols-outlined"> chevron_right </span>
+      </div>
+
+      <div>
+        <span class="material-symbols-outlined"> call </span>
+        <p class="title">Phone</p>
+
+        <p class="field-cotainer">
+          {{ client.phoneNumber }}
+        </p>
+
+        <a class="change-btn" href>Change</a>
+        <span class="material-symbols-outlined"> chevron_right </span>
+      </div>
+
+      <div>
+        <span class="material-symbols-outlined"> home </span>
+        <p class="title">Address</p>
+
+        <section class="field-cotainer">
+          {{ client.address.streetNumber }} {{ client.address.streetName }}
+          <br />
+          {{ client.address.city }}
+          <br />
+          {{ client.address.postalCode }}
+        </section>
+
+        <a class="change-btn" href>Change</a>
+        <a href="https://www.google.com">
+          <span class="material-symbols-outlined"> chevron_right </span>
+        </a>
+      </div>
+    </h4>
+  </div>
+</section>

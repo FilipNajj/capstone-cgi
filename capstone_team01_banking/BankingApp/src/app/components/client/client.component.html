@@ -1,0 +1,13 @@
+<app-client-header></app-client-header>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+    <mat-nav-list>
+      <a *ngFor="let nav of menu" mat-list-item [routerLink]="nav.link" [disabled]="nav.isDisabled">
+        {{ nav.label }}
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,37 @@
+<form [formGroup]="contactForm">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Name : </mat-label>
+        <input matInput type="text" formControlName="contactName"/>
+        <mat-error *ngIf="contactForm.get('contactName')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile Phone: </mat-label>
+        <input matInput type="text" formControlName="mobilePhone"/>
+        <mat-error *ngIf="contactForm.get('mobilePhone')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label> Email Address </mat-label>
+        <input matInput type="text" formControlName="emailAddress" />
+        <mat-error *ngIf="contactForm.get('emailAddress')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </p>
+  </form>
+  <button
+    mat-raised-button
+    (click)="editContact()"
+    [disabled]="contactForm.invalid"
+  >
+    edit contact
+  </button>
+  

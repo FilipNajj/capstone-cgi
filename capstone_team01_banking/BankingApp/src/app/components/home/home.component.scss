@@ -1,0 +1,44 @@
+.welcome-div {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/home.png);
+  background-size: cover;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-div h1 {
+  text-align: center;
+  color: var(--color-primary);
+  font-size: 60px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.message {
+  margin: 20px;
+}
+
+mat-card {
+  background-color: var(--color-accent);
+  width: 20%;
+  margin: 20px;
+  display: inline-block;
+}
+
+mat-card-content, mat-card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-icon {
+  font-size: 100px;
+  width: 100px;
+  height: 100px;
+}

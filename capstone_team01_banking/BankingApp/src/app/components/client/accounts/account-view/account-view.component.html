@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-title>
+    <div>
+      {{
+        account.accountType.charAt(0).toUpperCase() +
+          account.accountType.slice(1)
+      }}
+      <span [ngClass]="{'green': isGreen(), 'red' : isRed(), 'yellow' : isYellow() }">
+        {{ account.accountStatus }}
+      </span>
+    </div>
+  </mat-card-title>
+  <mat-card-subtitle>{{ accountNumber }}</mat-card-subtitle>
+  <mat-card-content>
+    <h1>{{ account.balance | currency: "CAD":true:"1.2-2" }}</h1>
+  </mat-card-content>
+</mat-card>
+
+<mat-tab-group dynamicHeight color="accent" backgroundColor="primary">
+  <mat-tab label="Transactions">
+    <app-account-transaction></app-account-transaction>
+  </mat-tab>
+  <mat-tab label="Details">
+    <app-account-detail></app-account-detail>
+  </mat-tab>
+</mat-tab-group>

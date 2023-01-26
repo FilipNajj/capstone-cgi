@@ -1,0 +1,31 @@
+<div>
+  <h1>
+    Accounts Overview
+    <button mat-raised-button routerLink="/client/addAccount" color="primary">
+      Add account
+    </button>
+  </h1>
+
+  <app-account-overview
+    *ngFor="let account of this.accountManagementService.accounts"
+    [account]="account"
+  ></app-account-overview>
+</div>
+<br />
+<div>
+  <h1>
+    Credit cards
+    <button
+      mat-raised-button
+      routerLink="/client/addCreditCard"
+      color="accent"
+      disabled="true"
+    >
+      Add credit card
+    </button>
+  </h1>
+  <app-credit-card-overview
+    *ngFor="let cc of this.accountManagementService.creditCards"
+    [creditCard]="cc"
+  ></app-credit-card-overview>
+</div>

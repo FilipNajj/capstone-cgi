@@ -1,0 +1,14 @@
+<mat-list>
+    <div mat-subheader>Transactions</div>
+    <mat-list-item *ngFor="let transaction of transactions">
+      <mat-icon mat-list-icon *ngIf="isAdd(transaction)" >add</mat-icon>
+      <mat-icon mat-list-icon *ngIf="!isAdd(transaction)">remove</mat-icon>
+      <div mat-line style="font-size: 18px">{{ transaction.transactionType }}</div>
+      <div mat-line>
+        {{ transaction.dateCreated }}
+      </div>
+      <div mat-line >
+        {{ getAmount(transaction) | currency: "CAD":true:"1.2-2" }}
+      </div>
+    </mat-list-item>
+  </mat-list>

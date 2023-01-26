@@ -1,0 +1,109 @@
+@use '@angular/material' as mat;
+@import '~@angular/material/theming';
+
+
+@include mat.core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-primary: (
+    50 : #e6f2e1,
+    100 : #c1dfb4,
+    200 : #98ca82,
+    300 : #6fb450,
+    400 : #50a42b,
+    500 : #319405,
+    600 : #2c8c04,
+    700 : #258104,
+    800 : #1f7703,
+    900 : #136501,
+    A100 : #a0ff95,
+    A200 : #72ff62,
+    A400 : #45ff2f,
+    A700 : #2eff15,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-accent: (
+    50 : #faf4e3,
+    100 : #f2e4b9,
+    200 : #ead28a,
+    300 : #e2c05b,
+    400 : #dbb338,
+    500 : #d5a515,
+    600 : #d09d12,
+    700 : #ca930f,
+    800 : #c48a0c,
+    900 : #ba7906,
+    1000 : #925f06,
+    A100 : #fff4e4,
+    A200 : #ffdfb1,
+    A400 : #ffcb7e,
+    A700 : #ffc164,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+$BankingApp-primary: mat-palette($md-primary);
+$BankingApp-accent: mat-palette($md-accent);
+$BankingApp-warn: mat.define-palette(mat.$red-palette);
+$BankingApp-success: mat.define-palette(mat.$green-palette);
+
+$BankingApp-theme: mat.define-light-theme((
+  color: (primary: $BankingApp-primary,
+        accent: $BankingApp-accent,
+        warn: $BankingApp-warn,
+        success: $BankingApp-success
+      )));
+
+@include mat.all-component-themes($BankingApp-theme);
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --color-primary: #{mat-color($BankingApp-primary)};
+  --color-card: #{mat-color($BankingApp-primary, 100)};
+  --color-accent: #{mat-color($BankingApp-accent)};
+  --color-accent-dark: #{mat-color($BankingApp-accent, 1000)};
+  --color-warn: #{mat-color($BankingApp-warn)};
+  --color-success: #{mat-color($BankingApp-success)};
+}

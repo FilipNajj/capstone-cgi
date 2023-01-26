@@ -1,0 +1,10 @@
+<mat-toolbar color="accent">
+  <button
+    mat-button
+    *ngFor="let menuItem of navMenu"
+    [routerLink]="menuItem.link"
+    [disabled]="menuItem.isDisabled"
+  >
+    {{ menuItem.label }}
+  </button>
+</mat-toolbar>

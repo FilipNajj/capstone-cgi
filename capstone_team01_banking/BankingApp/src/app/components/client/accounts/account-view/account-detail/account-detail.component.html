@@ -1,0 +1,13 @@
+<mat-list>
+  <div mat-subheader>Details of the account</div>
+  <mat-list-item *ngFor="let info of information">
+    <mat-icon mat-list-icon>arrow_right</mat-icon>
+    <div mat-line style="font-size: 18px">{{ info.label }}</div>
+    <div mat-line *ngIf="info.isMoney">
+      {{ info.value | currency: "CAD":true:"1.2-2" }}
+    </div>
+    <div mat-line *ngIf="!info.isMoney">
+      {{ info.value | percent: "0.2-2" }}
+    </div>
+  </mat-list-item>
+</mat-list>

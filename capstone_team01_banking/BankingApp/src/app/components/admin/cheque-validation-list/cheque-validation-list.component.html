@@ -1,0 +1,35 @@
+<table mat-table [dataSource]="transactions" class="mat-elevation-z8 demo-table">  
+    <ng-container matColumnDef="clientId">
+      <th mat-header-cell *matHeaderCellDef>Client Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.clientId }}</td>
+    </ng-container>
+    <ng-container matColumnDef="tarnsactionId">
+        <th mat-header-cell *matHeaderCellDef>Transaction Id</th>
+        <td mat-cell *matCellDef="let element">{{ element.transactionId }}</td>
+      </ng-container>
+  
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>amount</th>
+      <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+    </ng-container>  
+    <ng-container matColumnDef="toAccountNumber">
+      <th mat-header-cell *matHeaderCellDef>To Account Number</th>
+      <td mat-cell *matCellDef="let element">{{ element.toAccountNumber }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="adminId">
+      <th mat-header-cell *matHeaderCellDef>Admin Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.adminId }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="createdBy">
+      <th mat-header-cell *matHeaderCellDef>Created By</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.createdBy }}
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  

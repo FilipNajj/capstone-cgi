@@ -1,0 +1,23 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image">
+      <mat-icon> credit_card </mat-icon>
+    </div>
+    <mat-card-title>{{ creditCardProduct.type }}</mat-card-title>
+    <mat-card-subtitle>{{ creditCardProduct.name }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="getImageUrl()" alt="Photo of the credit card" />
+  <mat-card-content>
+    <p>
+      {{ creditCardProduct.description }}
+    </p>
+    <p>
+      <span class="bold"> Purchasing Interest Rate : </span>
+      {{ creditCardProduct.purchaseInterestRate }} %
+    </p>
+    <p>
+      <span class="bold"> Cash Advance Interest Rate : </span>
+      {{ creditCardProduct.cashAdvanceInterestRate }} %
+    </p>
+  </mat-card-content>
+</mat-card>

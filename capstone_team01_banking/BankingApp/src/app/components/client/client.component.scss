@@ -1,0 +1,19 @@
+::ng-deep .mat-sidenav-container {
+    height: 80vh;
+}
+
+@media screen and (min-width: 500px) {
+    mat-sidenav {
+        width: 15vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    mat-sidenav {
+        width: 50vw;
+    }
+}
+
+mat-sidenav-content {
+    padding: 10px;
+}

@@ -1,0 +1,104 @@
+
+ERRORS
+-transfer not working
+-deleting 1 contact deletes everything 
+
+LATER
+-Learn SCSS 
+-learn git better, worktree
+-docker
+-loggers
+
+
+
+
+The frontend is served via a docker container behind the gateway from our server
+Oauth2.0 : manage access to resources instead of needing access info from user(protect by role), 
+it delegates this tasks to other servers eg. for security we use keycloak(cryptography, authentication etc)
+
+
+
+
+
+====================================================================================
+What is OAuth 2.0 and how it works?
+The OAuth 2.0 authorization framework is a protocol that allows a user to grant a third-party web site or 
+application access to the user's protected resources, without necessarily revealing their long-term credentials 
+or even their identity.
+
+JPA: a tool that manages relational data in java apps. save,delete, find data
+
+
+let's talk about the MS that we've implemented
+9 microservices that interact with eachother in our application
+each microservice performs CRUD operations using REST APIs and this allows it to do actions such as adding, deleting, updating and 
+retreiving entities. Each MS uses either MySQL DB with JPA or MongoDB with MongoRepository.
+I will present you the first four MS and my colleague will present the other 5
+
+Client Service. As a banking app, we need to manage clients & their data. For instance, we need to add a client to the DB once he registers. 
+Update the client when he adds an account and retreive and display his information from the DB on his profile.
+The client MS is responsible for all of these operations. And of course, it contains information like:
+firstname, lastname, address, phone#, email.
+a client can have 2 types of accounts:
+and he can add recipients to whom he can transfer money
+he can also add credit cards 
+
+
+Credit Card Service, it manages the information of the Credit card companies as well as their products.
+Information about the company can be like the company name or its products list
+Information about the products can be the expiry date, or product type: like visa, mastercard or amex.
+So it's also responsible for displaying some of these information in the application and it can do other operations
+like adding new products or editing them.
+
+
+Admin is another type of user and he has more priviliges than a client. This microservice is responsible for managing the admin information,
+again the basic stuff: name, phone#, address, so on and so forth. But it also communicates with other MS like the client MS.
+And it does this by calling the methods of the client MS and this allows it to manage the clients
+For example, an admin can perform actions like deleting or updating clients and even cc accounts. It can also add institutions and payees
+
+
+Authentication Service. This MS allows the users to authenticate themselves, to log in to their accounts.
+There are 3 types of users: admins, clients and credit card companies. So, the Authentication Service has
+to communicate with these 3 MS. And when a user registers, let's say as an admin, then the Authentication Service
+calls the addAdmin method in the Admin MS and the admin is registered and added to the DB.
+The technology used in this MS is KeyCloak. KeyCloak is very useful and secure tool that allows to register & authenticate 
+users with not a lot of code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

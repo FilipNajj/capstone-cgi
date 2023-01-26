@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <div routerLink="/home">
+    <img src="/assets/logo.png" alt="image" width="64px" />
+    Axle Bank
+  </div>
+  <span class="spacer"></span>
+  <button
+    *ngIf="!this.authService.isAuthenticated"
+    mat-icon-button
+    routerLink="/login"
+  >
+    <mat-icon>login</mat-icon>`
+  </button>
+  <button
+    *ngIf="this.authService.isAuthenticated"
+    mat-icon-button
+    (click)="logout()"
+  >
+    <mat-icon>logout</mat-icon>`
+  </button>
+</mat-toolbar>

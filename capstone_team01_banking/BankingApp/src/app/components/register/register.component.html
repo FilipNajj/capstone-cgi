@@ -1,0 +1,31 @@
+<div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+      <mat-card-subtitle>Please choose the type of account</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Choose a type of account</mat-label>
+          <mat-select formControlName="typeUser">
+            <mat-option
+              *ngFor="let option of accountTypes"
+              value="{{ option.value }}"
+              >{{ option.label }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        (click)="goToForm()"
+        [disabled]="this.form.invalid"
+      >
+        Continue
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,69 @@
+<app-institution-form></app-institution-form>
+<div class="container">
+  <div>
+    <h1>
+      Institutions
+      <button
+        class="delete"
+        color="warn"
+        mat-raised-button
+        [disabled]="!selection.selected.length"
+        (click)="removeData()"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </h1>
+  </div>
+
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8 demo-table"
+  >
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          (change)="$event ? toggleAllRows() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          [aria-label]="checkboxLabel()"
+        >
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+          [aria-label]="checkboxLabel(row)"
+        >
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <div>
+      <ng-container matColumnDef="institutionId">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{ element?.institutionId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="institutionName">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element?.institutionName }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef>Creation date</th>
+        <td mat-cell *matCellDef="let element">{{ element?.createdDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef>Phone number</th>
+        <td mat-cell *matCellDef="let element">{{ element?.phoneNumber }}</td>
+      </ng-container>
+    </div>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

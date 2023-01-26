@@ -1,0 +1,148 @@
+server:
+  port: 9004
+
+spring:
+  application:
+    name: gateway-auth-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/axlebank?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: pass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+
+
+
+## API SECURITY WITH KEYCLOAK PROVIDER
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/axlebank
+            authorization-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/auth
+            jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
+            token-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/token
+#            logout: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/logout
+            user-info-authentication-method: header
+            user-info-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+          # banking-axle-client:
+            authorization-grant-type: authorization_code
+            client-id: ${app.config.keycloak.client-id}
+            client-secret: ${app.config.keycloak.client-secret}
+            provider: keycloak
+#            redirectUri: 'http://localhost:4200/'
+            redirect-uri: http://localhost:9004/login/oauth2/code/keycloak
+            scope: openid, roles
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
+
+  ## GATEWAY CONFIGURATIONS
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 2000 # 2s
+        response-timeout: 5s
+        pool:
+          type: elastic
+          max-idle-time: 15s
+          max-life-time: 60s
+      default-filters:
+        - SaveSession
+        - TokenRelay
+        - name: Retry
+          args:
+            retries: 3
+            methods: GET
+            series: SERVER_ERROR
+            exceptions: java.io.IOException, java.util.concurrent.TimeoutException
+            backoff:
+              firstBackoff: 50ms
+              maxBackOff: 500ms
+              factor: 2
+              basedOnPreviousValue: false
+      routes:
+
+
+        - id: client-route
+          uri: ${CLIENT_SERVICE_URL:http://localhost:9001}/api/v1/client/
+          predicates:
+            - Path=/api/v1/client/**
+
+        - id: company-route
+          uri: ${COMPANY_SERVICE_URL:http://localhost:9003}/api/v1/company
+          predicates:
+            - Path=/api/v1/company/**
+
+        - id: admin-route
+          uri: ${admin_SERVICE_URL:http://localhost:9002}/api/v1/admin/
+          predicates:
+            - Path=/api/v1/admin/**
+
+        - id: accounts-route
+          uri: ${ACCOUNTS_SERVICE_URL:http://localhost:9005}/api/v1/accounts/
+          predicates:
+            - Path=/api/v1/accounts/**
+
+        - id: transaction-route
+          uri: ${TRANSACTION_SERVICE_URL:http://localhost:9008}/api/v1/transaction
+          predicates:
+            - Path=/api/v1/transaction/**
+
+        - id: bankProducts-route
+          uri: ${BANKPRODUCTS_SERVICE_URL:http://localhost:9012}/api/v1/bankproducts
+          predicates:
+            - Path=/api/v1/bankproducts/**
+
+
+        - id: institutions-route
+          uri: ${INSTITUTIONS_SERVICE_URL:http://localhost:9009}/api/v1/institution
+          predicates:
+            - Path=/api/v1/institution/**
+
+        - id: spa-route
+          uri: ${SPA_URL:http://localhost:9011}
+          predicates:
+            - Path=/,/*.css,/*.js,/favicon.ico,/assets/*
+
+
+
+
+
+## SECURITY BASED CONFIGURATIONS
+## client-secret needs to be regenerated if it is a new container
+app:
+  config:
+    keycloak:
+      url: http://localhost:8080/
+      realm: axlebank
+      client-secret: oUcNj80Ssdk2ivJpQ8tP7U79UhsYA4wN
+      client-id: banking-axle-client
+      scope: profile
+      authorization-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/auth
+      jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
+      token-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/token
+      logout: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/logout
+      user-info-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/userinfo
+      certs-id: cpyW7pOz1yUa64Af78Xu0oV6Sr5BjwtnD3w-LbKH6jM
+      authorization-grant-type: password
+
+
+
+
+
+
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: DEBUG
+#    reactor.netty.http.client: DEBUG
